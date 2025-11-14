@@ -9,7 +9,7 @@ function App() {
   return (
     <Routes>
       {/* 2. บอกว่าหน้าแรก "/" ให้ไปที่ LoginPage */}
-      <Route path="/" element={<LoginPage />} /> 
+      {/* <Route path="/" element={<LoginPage />} />  */}
     </Routes>
   )
 }
