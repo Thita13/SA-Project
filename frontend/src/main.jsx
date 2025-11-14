@@ -1,18 +1,26 @@
 // frontend/src/main.jsx
 
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-// import App from './App.jsx'
-import LoginPage from './views/Login.jsx';
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import './index.css'
 
-// 1. (สำคัญ!) Import BrowserRouter
-import { BrowserRouter } from 'react-router-dom'
+import LoginPage from './views/Login.jsx'
+import Detail from './views/Staff/Detail.jsx'
+import MyAssign from './views/Staff/My_Assign.jsx'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    {/* 2. (สำคัญ!) หุ้ม <App /> ด้วย <BrowserRouter> */}
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
     <BrowserRouter>
-      <LoginPage />
+      <Routes>
+        {/* Main routes for views (defined in main.jsx per project convention) */}
+        {/* Root renders Login page */}
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/assign" element={<MyAssign />} />
+        <Route path="/assign/detail/:ticketId" element={<Detail />} />
+        {/* Fallback: redirect unknown paths to login */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </BrowserRouter>
-  </React.StrictMode>,
+  </StrictMode>,
 )
