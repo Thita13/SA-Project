@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
-
+// middleware สำหรับตรวจสอบ token และ role
 const authMiddleware = (requiredRole) => {
   return (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1];

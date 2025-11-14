@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8
+    container_name: ticket_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234        # เปลี่ยน root password ให้ชัวร์
+      MYSQL_DATABASE: ticket_system        # ชื่อ database
+      MYSQL_USER: user                # สร้าง user ใหม่
+      MYSQL_PASSWORD: 1234         # รหัสผ่าน user ใหม่
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/2-seed.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: user
+      PMA_PASSWORD: 1234

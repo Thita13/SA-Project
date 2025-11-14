@@ -1,8 +1,8 @@
 //- Model สำหรับ user
 class User {
-  constructor(id, name_user, password, role, created_at) {
-    this.id = id;
-    this.name = name_user;
+  constructor(user_id, name, password, role, created_at) {
+    this.user_id = user_id;  // map จาก id_users
+    this.name = name;        // map จาก name_user
     this.password = password;
     this.role = role;
     this.created_at = created_at;
