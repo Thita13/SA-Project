@@ -30,13 +30,25 @@ const getTicketById = async (req, res) => {
 
 // POST /api/tickets - สร้าง ticket ใหม่
 const createTicket = async (req, res) => {
-  const { title, description, priority, assigned_to, user_id } = req.body;
+  // 1. (แก้ไข!) เอา user_id ออกจาก req.body
+  // เราจะไม่เชื่อ user_id ที่ส่งมาจาก body อีกต่อไป
+  const { title, description, priority, assigned_to } = req.body;
+  
+  // 2. (เพิ่มใหม่!) ดึง user id ที่แท้จริงมาจาก Token
+  // (authMiddleware เป็นคนถอดรหัส Token แล้วแนบมาให้ใน req.user)
+  const userIdFromToken = req.user.id; 
+
   try {
     const [result] = await db.query(
       'INSERT INTO ticket (title, description, priority, status, assigned_to, user_id, created_at, updated_at) VALUES (?, ?, ?, "open", ?, ?, NOW(), NOW())',
-      [title, description, priority, assigned_to || null, user_id]
+      // 3. (แก้ไข!) ใส่ userIdFromToken ลงไปแทน user_id จาก body
+      [title, description, priority || 'medium', assigned_to || null, userIdFromToken]
     );
-    res.status(201).json({ message: 'Ticket created', ticketId: result.insertId });
+    
+    // 4. (แนะนำ) ส่งข้อมูล ticket ที่สร้างเสร็จกลับไป
+    const [newTicket] = await db.query('SELECT * FROM ticket WHERE id = ?', [result.insertId]);
+    res.status(201).json(newTicket[0]);
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
