@@ -1,16 +1,19 @@
-// frontend/src/App.jsx
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+// import React from 'react';
+// import { Routes, Route } from 'react-router-dom';
+// import LoginPage from './views/Login.jsx';
+// // สมมติว่ามีหน้า Dashboard
+// const Dashboard = () => <h2>ยินดีต้อนรับ! (หน้า Dashboard)</h2>;
 
-// import LoginPage from './views/Login.jsx' 
+// function App() {
+//   return (
+//     <Routes>
+//       {/* 1. ถ้าเข้า /login ให้ไปหน้า Login */}
+//       <Route path="/login" element={<LoginPage />} />
 
-function App() {
-  return (
-    <Routes>
-      {/* 2. บอกว่าหน้าแรก "/" ให้ไปที่ LoginPage */}
-      {/* <Route path="/" element={<LoginPage />} />  */}
-    </Routes>
-  )
-}
+//       {/* 2. ถ้าเข้า / ให้ไปหน้า Dashboard */}
+//       <Route path="/" element={<Dashboard />} /> 
+//     </Routes>
+//   );
+// }
 
-export default App
+// export default App;

@@ -1,0 +1,95 @@
+/* src/views/Login.css */
+
+/* 1. ปรับพื้นหลังทั้งหมด */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* ให้เต็มความสูงจอ */
+  background-color: #f0f2f5; /* สีพื้นหลังเทาอ่อน */
+  font-family: Arial, sans-serif;
+}
+
+/* 2. การ์ดฟอร์ม Login ตรงกลาง */
+.login-form-card {
+  width: 100%;
+  max-width: 400px; /* ความกว้างสูงสุดของการ์ด */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* ทำให้รูปภาพไม่ล้นขอบมน */
+  margin: 20px;
+}
+
+/* 3. ส่วนรูปภาพด้านบน */
+.login-image-header {
+  width: 100%;
+  height: 200px; /* ความสูงของรูปภาพ */
+}
+
+.login-image-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ทำให้รูปภาพเต็มพื้นที่โดยไม่เสียสัดส่วน */
+}
+
+/* 4. ส่วนเนื้อหา (Form) ด้านล่าง */
+.login-content {
+  padding: 30px;
+  text-align: center;
+}
+
+.login-content h2 {
+  font-size: 24px;
+  color: #4B0082;
+  font-weight: bold;
+  margin-bottom: 5px;
+  /* (ตัวอย่าง) ทำให้เป็นสีม่วงเหมือนในรูป */
+  /* color: #4a00e0; */ 
+}
+
+.login-content p {
+  font-size: 16px;
+  color: #666;
+  font-weight: bold;
+  margin-bottom: 20px;
+
+}
+
+/* 5. กล่อง Input (Email/Password) */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* ทำให้ padding ไม่ล้นกรอบ */
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #3b0368; /* สีม่วงตอนคลิก */
+}
+
+/* 6. ปุ่ม Login */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #550391; /* สีม่วง (เหมือนในรูป) */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #38026b; /* สีม่วงเข้มขึ้นตอน hover */
+}
