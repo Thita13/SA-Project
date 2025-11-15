@@ -105,19 +105,6 @@ export default function CreateTicket() {
               />
             </div>
 
-            {/* Department */}
-            <div className="form-group">
-              <label>Department / แผนก *</label>
-              <input
-                type="text"
-                required
-                name="department"
-                placeholder="เช่น: Accounting"
-                value={formData.department}
-                onChange={handleChange}
-              />
-            </div>
-
             {/* Description */}
             <div className="form-group">
               <label>Description / รายละเอียด *</label>
