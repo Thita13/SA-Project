@@ -1,0 +1,166 @@
+/* src/views/User/TicketDetail.css */
+
+.user-ticketdetail-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 210px;
+  background: linear-gradient(180deg, #6b46c1, #553c9a);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sidebar shared style */
+.brand {
+  padding: 2rem 1.5rem;
+}
+
+.nav-item {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Ticket Info Card */
+.ticket-info-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.info-row {
+  margin-bottom: 0.8rem;
+}
+
+.info-row strong {
+  width: 120px;
+  display: inline-block;
+}
+
+.desc {
+  margin-top: 0.4rem;
+}
+
+/* Buttons */
+.action-btns {
+  margin-top: 1.5rem;
+}
+
+.delete-btn {
+  background: #e53e3e;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  color: white;
+  border-radius: 6px;
+}
+
+.delete-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Badge */
+.badge {
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  color: white;
+  font-size: 0.85rem;
+}
+.badge.open {
+  background: #ed64a6;
+}
+.badge.inprogress {
+  background: #f6ad55;
+}
+.badge.closed {
+  background: #48bb78;
+}
+
+/* Comment Section */
+.comment-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-item {
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+  border-radius: 6px;
+}
+
+.comment-item.me {
+  background: #e9d8fd;
+}
+
+.comment-item.staff {
+  background: #bee3f8;
+}
+
+.comment-sender {
+  font-weight: 600;
+}
+
+.comment-text {
+  margin: 0.3rem 0;
+}
+
+.comment-time {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* Input box */
+.comment-input-box {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-input-box textarea {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.send-btn {
+  margin-top: 0.8rem;
+  align-self: flex-end;
+  padding: 0.7rem 1.4rem;
+  background: #553c9a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}

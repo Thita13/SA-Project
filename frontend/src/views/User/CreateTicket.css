@@ -1,0 +1,180 @@
+/* src/views/User/CreateTicket.css */
+
+.user-create-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 210px;
+  background: linear-gradient(180deg, #6B46C1 0%, #553C9A 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  padding: 2rem 1.5rem;
+}
+
+.brand-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.nav-item {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+}
+
+.logout {
+  margin-top: auto;
+  padding: 1.5rem;
+}
+
+.logout-btn {
+  width: 100%;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #67E8F9 0%, #3B82F6 100%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+}
+
+.content {
+  padding: 2rem;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Form */
+.ticket-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  max-width: 700px;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 0.7rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.file-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.file-icon {
+  width: 20px;
+  height: 20px;
+  color: #666;
+}
+
+.submit-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.submit-btn {
+  padding: 0.8rem 1.6rem;
+  background: #553C9A;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #442f7a;
+}

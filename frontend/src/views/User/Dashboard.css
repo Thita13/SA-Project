@@ -1,0 +1,198 @@
+/* src/views/User/Dashboard.css */
+
+.user-dashboard-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Sidebar (ใช้แบบเดียวกับ CreateTicket) */
+.sidebar {
+  width: 210px;
+  background: linear-gradient(180deg, #6B46C1 0%, #553C9A 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  padding: 2rem 1.5rem;
+}
+
+.brand-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.nav-item {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+}
+
+.logout {
+  margin-top: auto;
+  padding: 1.5rem;
+}
+
+.logout-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Main layout */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Avatar etc. */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #67E8F9, #3B82F6);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Summary Cards */
+.summary-cards {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  flex: 1;
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: white;
+}
+
+.card-open { background: #ED64A6; }
+.card-progress { background: #F6AD55; }
+.card-closed { background: #48BB78; }
+
+.card-title {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.card-number {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Table */
+.ticket-table-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.table-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.ticket-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ticket-table th {
+  text-align: left;
+  padding: 0.8rem;
+  background: #f0f0f0;
+}
+
+.ticket-table td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+
+.view-btn {
+  padding: 0.4rem 1rem;
+  background: #6B46C1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.view-btn:hover {
+  background: #553C9A;
+}
+
+/* Status badge */
+.badge {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: white;
+}
+
+.badge.open { background: #ED64A6; }
+.badge.inprogress { background: #F6AD55; }
+.badge.closed { background: #48BB78; }
