@@ -5,9 +5,12 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './index.css'
 
+import AdminDashboard from './views/Admin/Dashboard.jsx'
 import LoginPage from './views/Login.jsx'
+import StaffDashboard from './views/Staff/Dashboard.jsx'
 import Detail from './views/Staff/Detail.jsx'
 import MyAssign from './views/Staff/My_Assign.jsx'
+import UserDashboard from './views/User/Dashboard.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,6 +20,10 @@ createRoot(document.getElementById('root')).render(
         {/* Root renders Login page */}
         <Route path="/" element={<LoginPage />} />
         <Route path="/assign" element={<MyAssign />} />
+        <Route path="/dashboard" element={<StaffDashboard />} />
+        <Route path="/staff/dashboard" element={<StaffDashboard />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/user/dashboard" element={<UserDashboard />} />
         <Route path="/assign/detail/:ticketId" element={<Detail />} />
         {/* Fallback: redirect unknown paths to login */}
         <Route path="*" element={<Navigate to="/" replace />} />
