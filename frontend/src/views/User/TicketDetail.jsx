@@ -1,56 +1,70 @@
 // src/views/User/TicketDetail.jsx
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Bell, Search } from "lucide-react";
 import "./TicketDetail.css";
+import ticketService from "../../services/ticketService";
 
 export default function UserTicketDetail() {
   const navigate = useNavigate();
   const { ticketId } = useParams();
 
-  // Mock Ticket Data (เพราะยังไม่เชื่อม API)
-  const [ticket, setTicket] = useState({
-    id: ticketId,
-    title: "คอมเปิดไม่ติด",
-    department: "IT Support",
-    priority: "High",
-    status: "Open",
-    description: "เปิดคอมแล้วไม่ขึ้นจออะไรเลย",
-    created_at: "2025-01-10 10:00",
-  });
-
-  const [comments, setComments] = useState([
-    { id: 1, sender: "User", text: "ผมเจอปัญหาตอนเช้านี้ครับ", time: "10:05" },
-    { id: 2, sender: "Staff", text: "รับเรื่องแล้วครับ", time: "10:10" },
-  ]);
-
+  const [ticket, setTicket] = useState(null);
+  const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  // add new comment (mock only)
-  const handleAddComment = () => {
-    if (!newComment.trim()) return;
-
-    const newObj = {
-      id: comments.length + 1,
-      sender: "User",
-      text: newComment,
-      time: "Now",
+  useEffect(() => {
+    let mounted = true;
+    const fetch = async () => {
+      try {
+        const data = await ticketService.getTicket(ticketId);
+        if (!mounted) return;
+        setTicket(data || null);
+        setComments((data && data.comments) || []);
+      } catch (err) {
+        console.error('Failed to load ticket', err);
+        alert('ไม่สามารถโหลดข้อมูล Ticket ได้');
+      } finally {
+        if (mounted) setLoading(false);
+      }
     };
+    fetch();
+    return () => (mounted = false);
+  }, [ticketId]);
 
-    setComments([...comments, newObj]);
-    setNewComment("");
+  // add new comment
+  const handleAddComment = async () => {
+    if (!newComment.trim()) return;
+    try {
+      const payload = { text: newComment };
+      const added = await ticketService.addComment(ticketId, payload);
+      // append returned comment or fallback
+      const commentObj = added || { id: Date.now(), sender: 'User', text: newComment, time: 'Now' };
+      setComments((prev) => [...prev, commentObj]);
+      setNewComment("");
+    } catch (err) {
+      console.error('Failed to add comment', err);
+      alert('ไม่สามารถส่งคอมเมนต์ได้');
+    }
   };
 
   // delete ticket (only if Open)
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    if (!ticket) return;
     if (ticket.status !== "Open") {
       alert("ลบไม่ได้ เพราะ Ticket ไม่ได้อยู่ในสถานะ Open");
       return;
     }
-
-    alert("ลบ Ticket สำเร็จ (Mock)");
-    navigate("/user/dashboard");
+    try {
+      await ticketService.deleteTicket(ticketId);
+      alert('ลบ Ticket สำเร็จ');
+      navigate('/user/dashboard');
+    } catch (err) {
+      console.error('Failed to delete ticket', err);
+      alert('ลบ Ticket ไม่สำเร็จ');
+    }
   };
 
   return (
@@ -63,16 +77,16 @@ export default function UserTicketDetail() {
 
         <nav>
           <div className="nav-item" onClick={() => navigate("/user/dashboard")}>
-            📊 Dashboard
+            Dashboard
           </div>
           <div className="nav-item" onClick={() => navigate("/user/create")}>
-            📝 Create Ticket
+            Create Ticket
           </div>
-          <div className="nav-item active">🧾 Ticket Detail</div>
+          <div className="nav-item active">Ticket Detail</div>
         </nav>
 
         <div className="logout">
-          <button className="logout-btn">🚪 Logout</button>
+          <button className="logout-btn">Logout</button>
         </div>
       </div>
 
@@ -105,7 +119,10 @@ export default function UserTicketDetail() {
 
         {/* Content */}
         <div className="content">
-          <h1 className="page-title">Ticket Detail</h1>
+            <h1 className="page-title">Ticket Detail</h1>
+
+            {loading && <div>Loading ticket...</div>}
+            {!loading && !ticket && <div>Ticket not found.</div>}
 
           {/* Ticket Info Card */}
           <div className="ticket-info-card">

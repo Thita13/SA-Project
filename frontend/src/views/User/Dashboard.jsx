@@ -1,37 +1,32 @@
 // src/views/User/Dashboard.jsx
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Bell, Search } from "lucide-react";
 import "./Dashboard.css";
+import ticketService from "../../services/ticketService";
 
 export default function UserDashboard() {
   const navigate = useNavigate();
 
-  // Mock Ticket Data (เพราะยังไม่ใช้ API)
-  const [tickets] = useState([
-    {
-      id: 1,
-      title: "คอมเปิดไม่ติด",
-      status: "Open",
-      priority: "High",
-      created_at: "2025-01-10",
-    },
-    {
-      id: 2,
-      title: "อินเทอร์เน็ตช้า",
-      status: "In Progress",
-      priority: "Medium",
-      created_at: "2025-01-09",
-    },
-    {
-      id: 3,
-      title: "ขอสิทธิ์เข้าระบบ",
-      status: "Closed",
-      priority: "Low",
-      created_at: "2025-01-05",
-    },
-  ]);
+  const [tickets, setTickets] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchTickets = async () => {
+      try {
+        const data = await ticketService.getTickets();
+        if (mounted) setTickets(data || []);
+      } catch (err) {
+        console.error('Failed to fetch tickets', err);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    };
+    fetchTickets();
+    return () => (mounted = false);
+  }, []);
 
   // สรุปจำนวน
   const totalOpen = tickets.filter((t) => t.status === "Open").length;
@@ -47,14 +42,14 @@ export default function UserDashboard() {
         </div>
 
         <nav>
-          <div className="nav-item active">📊 Dashboard</div>
+          <div className="nav-item active">Dashboard</div>
           <div className="nav-item" onClick={() => navigate("/user/create")}>
-            📝 Create Ticket
+            Create Ticket
           </div>
         </nav>
 
         <div className="logout">
-          <button className="logout-btn">🚪 Logout</button>
+          <button className="logout-btn">Logout</button>
         </div>
       </div>
 
@@ -128,7 +123,12 @@ export default function UserDashboard() {
               </thead>
 
               <tbody>
-                {tickets.map((t) => (
+                {loading ? (
+                  <tr><td colSpan={6}>Loading...</td></tr>
+                ) : tickets.length === 0 ? (
+                  <tr><td colSpan={6}>No tickets found.</td></tr>
+                ) : (
+                  tickets.map((t) => (
                   <tr key={t.id}>
                     <td>{t.id}</td>
                     <td>{t.title}</td>
@@ -148,7 +148,8 @@ export default function UserDashboard() {
                       </button>
                     </td>
                   </tr>
-                ))}
+                  ))
+                )}
               </tbody>
             </table>
 

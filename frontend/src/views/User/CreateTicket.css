@@ -10,25 +10,40 @@
 /* Sidebar */
 .sidebar {
   width: 210px;
-  background: linear-gradient(180deg, #6B46C1 0%, #553C9A 100%);
+  background: linear-gradient(180deg, #5b21b6 0%, #6d28d9 100%);
   color: white;
   display: flex;
   flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .brand {
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 1rem;
 }
 
 .brand-title {
   font-size: 1.4rem;
   font-weight: 600;
+  margin: 0;
+  color: white;
+  line-height: 1.2;
 }
 
 .nav-item {
-  padding: 1rem 1.5rem;
+  padding: 0.9rem 1.5rem;
+  margin: 0.3rem 1rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
 }
 
 .nav-item:hover {
@@ -43,6 +58,8 @@
 .logout {
   margin-top: auto;
   padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 1rem;
 }
 
 .logout-btn {
@@ -50,9 +67,14 @@
   border: none;
   background: none;
   color: white;
-  font-size: 1rem;
   text-align: left;
   cursor: pointer;
+  padding: 0.9rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.95rem;
+  transition: 0.2s;
 }
 
 /* Main */
@@ -117,7 +139,9 @@
   font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
+
 
 /* Form */
 .ticket-form {
@@ -126,6 +150,8 @@
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   max-width: 700px;
+  margin: 0 auto;       /* เพิ่ม */
+  width: 100%;  
 }
 
 .form-group {

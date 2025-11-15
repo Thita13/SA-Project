@@ -2,9 +2,11 @@
 import axios from 'axios';
 
 // สร้าง instance ของ axios
+// ใช้ environment variable `VITE_API_BASE` เมื่อมีการตั้งค่า (สำหรับ Vite)
+const baseURL = import.meta?.env?.VITE_API_BASE || 'http://localhost:5000/api';
+
 const api = axios.create({
-  // URL ของ backend ที่คุณรันไว้ (จากไฟล์ .env)
-  baseURL: 'http://localhost:5000/api', 
+  baseURL,
 });
 
 // (ขั้นสูง) เพิ่ม Interceptor เพื่อแนบ Token ไปกับทุก request

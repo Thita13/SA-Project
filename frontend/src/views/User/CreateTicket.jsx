@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Bell, Search, Paperclip } from "lucide-react";
 import "./CreateTicket.css";
+import ticketService from "../../services/ticketService";
 
 export default function CreateTicket() {
   const navigate = useNavigate();
@@ -26,14 +27,25 @@ export default function CreateTicket() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const payload = {
+        title: formData.title,
+        department: formData.department,
+        description: formData.description,
+        priority: formData.priority,
+      };
+      if (formData.attachment) payload.attachment = formData.attachment;
 
-    console.log("📌 Ticket Submitted (Mock Only)");
-    console.log(formData);
-
-    alert("สร้าง Ticket สำเร็จ (Mock)!");
-    navigate("/user/dashboard");
+      const res = await ticketService.createTicket(payload);
+      console.log('Ticket created', res);
+      alert('สร้าง Ticket สำเร็จ');
+      navigate('/user/dashboard');
+    } catch (err) {
+      console.error('Failed to create ticket', err);
+      alert('สร้าง Ticket ไม่สำเร็จ');
+    }
   };
 
   return (
@@ -46,13 +58,13 @@ export default function CreateTicket() {
 
         <nav>
           <div className="nav-item" onClick={() => navigate("/user/dashboard")}>
-            📊 Dashboard
+            Dashboard
           </div>
-          <div className="nav-item active">📝 Create Ticket</div>
+          <div className="nav-item active">Create Ticket</div>
         </nav>
 
         <div className="logout">
-          <button className="logout-btn">🚪 Logout</button>
+          <button className="logout-btn">Logout</button>
         </div>
       </div>
 
@@ -94,6 +106,7 @@ export default function CreateTicket() {
           <form className="ticket-form" onSubmit={handleSubmit}>
             {/* Title */}
             <div className="form-group">
+              <h2>Ticket Information</h2>
               <label>Title / หัวข้อปัญหา *</label>
               <input
                 type="text"
